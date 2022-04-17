@@ -13,6 +13,7 @@ export class StudentFormComponent implements OnInit {
   http: HttpClient;
   serverData: Object | null;
   url!: string;
+  url2!: string;
 
   constructor(fb: FormBuilder, http: HttpClient) { 
     this.http = http;
@@ -28,16 +29,35 @@ export class StudentFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onload();
   }
-
+  // custom function added by wong ka chun
+  onload(): void {
+    let myurl = "http://localhost/student/getDefaultStudent.php";
+    this.http.get(myurl).subscribe(
+      {      
+        next: (res) => {
+          console.log(res);
+          this.serverData = res;
+        },
+        error: (err) => {
+          console.log("Server call failed: " + err);
+        }
+      }
+    );
+  }
 
   onSubmit(formValue: any): void {
     console.log(formValue);
+    /*
     this.url = "http://localhost/smlau/demo.php?" + 
                   "stid=" + formValue['studentId'] + 
                   "&stname=" + formValue['studentName'] +
                   "&email=" + formValue['studentEmail'];
-    this.http.get(this.url).subscribe(
+    */
+    this.url2 = "http://localhost/student/getStudent.php?" +
+                "studentInput=" + formValue['studentId'];
+    this.http.get(this.url2).subscribe(
       {      
         next: (res) => {
           console.log(res);
