@@ -1,0 +1,33 @@
+<div class="ui raised segment">
+    <h2 class="ui header">Student Form</h2>
+    <form 
+      [formGroup]="studentForm"
+        (ngSubmit)="onSubmit(studentForm.value)"
+        class="ui form">
+      <div class="field">
+        <label for="studentId">Student Id</label>
+        <input type="text" 
+          id="studentId" 
+          placeholder="Student ID"
+          formControlName="studentId">
+      </div>
+      <div class="field">
+        <label for="studentId">Student Name</label>
+        <input type="text" 
+          id="studentName" 
+          placeholder="Student Name"
+          formControlName="studentName">
+      </div>      <div class="field">
+        <label for="studentId">Student Email</label>
+        <input type="text" 
+          id="studentEmail" 
+          placeholder="Student Email"
+          formControlName="studentEmail">
+      </div>
+  
+      <button type="submit" class="ui button">Submit</button>
+    </form>
+
+    <div>{{ serverData | json }}</div>
+  </div>
+  
